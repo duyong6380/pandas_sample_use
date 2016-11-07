@@ -11,7 +11,7 @@ import json
 
 csvfile = file('csvtes2.csv', 'wb')
 writer = csv.writer(csvfile)
-writer.writerow(['ID','版本号','订单号','最终用户','最终用户联系人','最终用户联系电话','行业','区域','销售人员名称','订货单位','产品型号'])
+writer.writerow(['ID','版本号','订单号','最终用户','最终用户联系人','最终用户联系电话','行业','区域','销售人员名称','订货单位','产品型号','下游渠道'])
 
 def writercsv(table):
     global writer
@@ -26,7 +26,7 @@ def parse_line_data(linedata):
     data = [linedata['devId'],linedata['pdVersion'],linedata['tid'],linedata['finalCustomer'],\
             linedata['finalUser'],linedata['finalTel'],linedata['tradeName'],\
             linedata['areaName'],linedata['crmUserName'],linedata['orderUnit'],\
-            linedata['pdName']]
+            linedata['pdName'],linedata['agentName']]
     return data
 
 def getIdByUrl(serial_num):
@@ -71,10 +71,5 @@ def main():
 if __name__ == '__main__':
     main()
 
-def writeLastCsv():
-    df = pd.read_csv('csvtes2.csv')
-    print table
-    pd.merge(df,table,on='id').to_csv('duy_last_csvfile.csv',index=False)
-#print df
 exit( 0)    
 
